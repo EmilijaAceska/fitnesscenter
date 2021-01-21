@@ -1,0 +1,68 @@
+<div class="container">
+    <h3 class="text-center text-warning display-3">MARKI</h3>
+    <!-- start row1 -->
+    <div class="row justify-content-center mt-3">
+        <form><!--start inputs-->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text text-warning">Search</span>
+                </div>
+                <input type="text" placeholder="Prebaraj po ime" name="searchByName" id="searchByName" ng-model="searchByName">
+                <input type="text" placeholder="Prebaraj po drzava" name="searchByCountry" id="searchByCountry"
+                        ng-model="searchByCountry">
+                <input type="number" placeholder="Prebaraj po eu" name="searchByEu" id="searchByEu" ng-model="searchByEu">
+            </div>
+        </form><!--end inputs-->
+    </div><!--end row1-->
+    <!-- start row2 -->
+    <div class="row">
+        <div class="col-sm-4"
+            ng-repeat="marka in marki | filter:{marka_name:searchByName,country:searchByCountry,eu:searchByEu}">
+            <div class="card">
+                <img class="card-img-top mx-auto" src="uploads/{{marka.marka_img}}" alt="{{marka.marka_img}}">
+                <div class="card-body font-weight-bold text-center">
+                    <h4 class="card-title text-warning">{{marka.marka_name}}</h4>
+                    <!-- <p class="card-text text-danger">{{marka.country}} {{marka.eu}}</p> -->
+                    <button type="button" class="btn btn-outline-success"  data-toggle="modal" data-target="#myModal" ng-click="function_getId($index)">See specification</button>
+                </div>
+            </div>
+            <!--/card-->
+        </div>
+        <!--end col-sm-4-->
+    </div>
+    <!--end row2-->
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header bg-success text-warning">
+                <h4 class="modal-title">Specifications: {{marki[getId].marka_name}}</h4>
+                <button type="button" class="close text-warning" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <img src="uploads/{{marki[getId].marka_img}}" alt="{{marki[getId].marka_img}}" width="200px" height="200px"/>
+                    </div>
+                    <div class="col-sm-6 text-success">
+                        <p><strong class="text-warning">Drzava: </strong>{{marki[getId].country}}</p>
+                        <p><strong class="text-warning">Eu:</strong> {{marki[getId].eu}}</p>
+                    </div>
+                    <div class="col-sm-6 text-success">
+                        <p><strong class="text-warning">Dopolnitelna oprema: </strong></p>
+                    </div>
+                </div>      
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-warning text-success" data-dismiss="modal">CANCEL</button>
+            </div>
+        </div>
+    </div>
+</div>

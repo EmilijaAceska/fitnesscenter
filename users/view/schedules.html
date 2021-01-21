@@ -1,0 +1,36 @@
+<h3 class="text-center display-3 text-light">SCHEDULES</h3>
+<div class="container table-responsive">
+<table class="table table-hover table-sm table-dark text-light">
+  <thead class="thead-dark">
+    <tr>
+      <th></th>
+      <th>Schedules ID</th>
+      <th>Workout Date</th>
+      <th>Product ID</th>
+      <th>Members ID</th>
+      <th>Instructor ID</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th><input type="text" placeholder="Search by ID" name="searchByID" id="searchByID" ng-model="searchByID" /></th>
+      <th><input type="text" placeholder="Search by DATE" name="searchByDATE" id="searchByDATE" ng-model="searchByDATE" /></th>
+      <th><input type="text" placeholder="Search by PRODUCT" name="searchByPRODUCT" id="searchByPRODUCT" ng-model="searchByPRODUCT" /></th>
+      <th><input type="text" placeholder="Search by MEMBERS NAME" name="searchByMEMBER" id="searchByMEMBER" ng-model="searchByMEMBER" /></th>
+      <th><input type="text" placeholder="Search by INSTRUCTOR NAME" name="searchByInstructor" id="searchByInstructor" ng-model="searchByInstructor" /></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="schedule in schedules | filter:{schedules_id:searchByID,workout_date:searchByDATE,product_id:searchByPRODUCT,f_name:searchByMEMBER,first_name:searchByInstructor}">
+      <!-- <td>{{$index}}</td> -->
+      <td></td>
+      <td>{{schedule.schedules_id}}</td>
+      <td>{{schedule.workout_date}}</td>
+      <td>{{schedule.product_title}}</td>
+      <td>{{schedule.f_name}} {{schedule.l_name}}</td><!--members-->
+      <td>{{schedule.first_name}} {{schedule.last_name}}</td><!--instructors-->
+    </tr>
+  </tbody>
+</table>
+</div>

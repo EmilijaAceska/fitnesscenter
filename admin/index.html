@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 4</title>
+<!--Bootstrap 4 Framework-->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/popper.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+<!--AngularJS Framework-->
+    <script src="../assets/js/angular.min.js"></script>
+    <script src="../assets/js/angular-route.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/routes.js"></script>
+<!--Icons-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!--My style-->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body ng-app="myApp" ng-controller="myLogin">
+    
+<div class="container">
+  <form class="form-myForm text-light">
+    <h1 class="h3 mb-3 fw-normal text-center">SIGN IN </h1>
+
+    <label for="admin_name" class="visually-hidden">User Name</label>
+    <input type="text" id="admin_name" name="admin_name" class="form-control" placeholder="admin name" ng-model="admin_name" autocomplete="off" required>
+
+    <label for="admin_password" class="visually-hidden">Password</label>
+    <input type="password" id="admin_password" name="admin_password" class="form-control" placeholder="password" ng-model="admin_password" autocomplete="off" required>
+
+    <button class="w-100 mt-5 btn btn-lg btn-primary" type="button" ng-click="logIn(admin_name,admin_password)">Sign in</button>
+  </form>
+</div>
+</body>

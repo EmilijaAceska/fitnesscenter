@@ -1,0 +1,13 @@
+<div class="container" ng-app="myApp" ng-controller="myLogin">
+  <form name="myForm" class="form-myForm text-light">
+    <h1 class="h3 mb-3 fw-normal text-center">SIGN IN to FITNESS CENTER</h1>
+
+    <label for="user_name" class="visually-hidden">Username</label>
+    <input type="user_name" class="form-control" id="user_name" name="user_name" placeholder="Username" ng-model="user_name" autocomplete="off" required>
+
+    <label for="user_password" class="visually-hidden">Password</label>
+    <input type="password" class="form-control" id="user_password" name="user_password" placeholder="Password" ng-model="user_password" autocomplete="off" required>
+    
+    <button class="mt-5 btn btn-lg btn-primary" type="button" ng-click="logIn(user_name,user_password)">Sign In</button>
+  </form>
+</div>

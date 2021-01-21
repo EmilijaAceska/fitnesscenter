@@ -1,0 +1,44 @@
+<h3>Details Marki</h3>
+<div class="alert alert-success" ng-show="successAlert">
+    Uspesno vnesovte marka!
+</div>
+<div class="alert alert-danger" ng-show="dangerAlert">
+    Popolnete go pravilno formularot!
+</div>
+<div class="alert alert-info" ng-show="infoAlert">
+    Ovoj zapis veke postoi!
+</div>
+<form name="myForm">
+    <div class="form-group">
+        <label for="marka_name">Ime:</label>
+        <div ng-show="myForm.marka_name.$invalid" class="alert alert-danger">Vnesete ime na marka so minimum 10 karakteri:</div>
+        <input type="text" class="form-control" placeholder="Ime na marka" name="marka_name" id="marka_name" ng-model="marki[checkUrl].marka_name" ng-maxlength="10">
+        <input type="hidden" class="form-control" name="marka_id" id="marka_id" ng-model="marki[checkUrl].marka_id"/>
+    </div>
+    <div class="form-group">
+        <label for="country">Drzava:</label>
+        <input type="text" class="form-control" placeholder="Drzava" name="country" id="country" ng-model="marki[checkUrl].country" ng-minlength="2">
+    </div>
+    <div class="form-group">
+        <label for="eu">EU:</label>
+        <input type="text" class="form-control" placeholder="EU 1/0" name="eu" id="eu" ng-model="marki[checkUrl].eu">
+    </div>
+    <div class="form-group">
+        <label for="marka_img">Prikaci slika</label>
+        <input type="text" class="form-control" placeholder="Prikaci slika" name="marka_img" id="marka_img" ng-model="marki[checkUrl].marka_img">
+    </div>
+    <div class="form-group">
+        <button ng-show="checkUrl===undefined" class="btn btn-primary" ng-click="(myForm.marka_name.$valid && myForm.country.$valid) ? function_details_marki(marki[checkUrl].marka_name,marki[checkUrl].country,marki[checkUrl].eu,marki[checkUrl].marka_img,marki[checkUrl].marka_id, 'insert') : function_error()">SAVE</button>
+    </div>
+    <div class="form-group">
+        <button ng-show="checkUrl!==undefined" class="btn btn-primary"
+            ng-click="(myForm.marka_name.$valid && myForm.country.$valid) ? function_details_marki(marki[checkUrl].marka_name,marki[checkUrl].country,marki[checkUrl].eu,marki[checkUrl].marka_img,marki[checkUrl].marka_id, 'update') : function_error()">EDIT</button>
+    </div>
+    <!-- myObj = {name: "John", age: 31, city: "New York"};
+    {
+        "marka_id":1,
+        "marka_name"="Mercedes",
+        "country"="Germanija",
+        "eu"=1
+    }      JSON -->
+</form>

@@ -1,0 +1,37 @@
+<h3>Details Dukani</h3>
+<div class="alert alert-success" ng-show="successAlert">
+    Uspesno vnesovte dukani!
+</div>
+<div class="alert alert-danger" ng-show="dangerAlert">
+    Popolnete go pravilno formularot!
+</div>
+<div class="alert alert-info" ng-show="infoAlert">
+    Ovoj zapis veke postoi!
+</div>
+<form name="myForm">
+    <div class="form-group">
+        <label for="ime_dukan">Ime:</label>
+        <div ng-show="myForm.ime_dukan.$invalid" class="alert alert-danger">Imeto na dukanot ne smee da ima poveke od 7 karakteri:</div>
+        <input type="text" class="form-control" placeholder="Ime na dukan" name="ime_dukan" id="ime_dukan" ng-model="dukani[checkUrl].ime_dukan" ng-maxlength="7">
+        <input type="hidden" class="form-control" name="dukani_id" id="dukani_id" ng-model="dukani[checkUrl].dukani_id" />
+      </div>
+    <div class="form-group">
+        <label for="grad">Grad:</label>
+        <input type="text" class="form-control" placeholder="Grad" name="grad" id="grad" ng-model="dukani[checkUrl].grad">
+    </div>
+    <div class="form-group">
+        <label for="br_dukan">EDB:</label>
+        <div ng-show="myForm.br_dukan.$invalid" class="alert alert-danger">Brojot mora da ima max 3 karakter:</div>
+        <input type="text" class="form-control" placeholder="Broj na dukan" name="br_dukan" id="br_dukan" ng-model="dukani[checkUrl].br_dukan" ng-maxlength="3">
+    </div>
+    <div class="fotm-group">
+        <label for="dukan_img">Prikaci slika</label>
+        <input type="text" class="form-control" placeholder="Prikaci slika" name="dukan_img" id="dukan_img" ng-model="dukani[checkUrl].dukan_img"/>
+    </div>
+    <div class="form-group">
+        <button ng-show="checkUrl===undefined" class="btn btn-primary" ng-click="(myForm.ime_dukan.$valid && myForm.br_dukan.$valid) ? function_details_dukani(dukani[checkUrl].ime_dukan,dukani[checkUrl].grad,dukani[checkUrl].br_dukan,dukani[checkUrl].dukan_img, dukani[checkUrl].dukani_id, 'insert') : function_error()">SAVE</button>
+    </div>
+    <div class="form-group">
+        <button ng-show="checkUrl!==undefined" class="btn btn-primary" ng-click="(myForm.ime_dukan.$valid && myForm.br_dukan.$valid) ? function_details_dukani(dukani[checkUrl].ime_dukan,dukani[checkUrl].grad,dukani[checkUrl].br_dukan,dukani[checkUrl].dukan_img, dukani[checkUrl].dukani_id, 'update') : function_error()">EDIT</button>
+    </div>            
+</form>

@@ -1,0 +1,58 @@
+<h3 class="text-center display-3 text-light">CATEGORIES</h3>
+<div class="table-responsive">
+<table class="table table-hover table-sm table-dark text-light">
+  <thead class="thead-dark">
+    <tr>
+      <th></th>
+      <th>Category_title</th>
+      <th>Category IMG</th>
+      <th>UPDATE</th>
+      <th>DELETE</th>
+      <th><input type="text" placeholder="Search in categories" name="searchByCategory" id="searchByCategory" ng-model="searchByCategory"/></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="categories in category | filter:{category_title:searchByCategory}">
+      <td>{{$index}}</td>
+      <td>{{categories.category_title}}</td>
+      <td><img style="width:80px;height:80px;" ng-src="../uploads/{{categories.category_img}}" alt="{{categories.category_img}}" /></td>
+      <td><a href="#!category_details/{{$index}}"><i class="fa fa-edit"></i></a></td>
+      <td><button type="button" title="DELETE" class="btn btn-danger" data-toggle="modal" data-target="#myModal"
+          ng-click="function_getId($index);function_deleteRowCategory(categories.category_title)">
+          <i class="fa fa-trash"></i>
+          </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header bg-danger">
+        <h4 class="modal-title">DELETE CATEGORY</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="alert alert-info" ng-show="infoAlert">
+          THIS RECORD CAN NOT BE DELETED!
+        </div>
+        <div>
+          ARE YOU SURE YOU WANT TO DELETE CATEGORY {{category[getId].category_title}}..?
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button ng-show="!infoAlert" type="button" class="btn btn-danger"
+          ng-click="function_deleteRow('category',category[getId].category_title)">DELETE</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>

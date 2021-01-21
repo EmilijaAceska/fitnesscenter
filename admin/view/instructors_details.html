@@ -1,0 +1,50 @@
+<h3 class="text-center display-3 text-light">INSTRUCTORS</h3>
+<div class="alert alert-success" ng-show="successAlert">
+  You entered new instructor successfuly!
+</div>
+<div class="alert alert-success" ng-show="successfullAlert">
+  You updated this instructor successfuly!
+</div>
+<div class="alert alert-danger" ng-show="dangerAlert">
+  Please fill in the form correctly!
+</div>
+<div class="alert alert-info" ng-show="infoAlert">
+  The record already exists!
+</div>
+<form name="myForm" class="text-light">
+  <div class="form-group">
+    <label for="first_name">First Name:</label>
+    <div ng-show="myForm.first_name.$invalid"></div>
+    <input type="text" class="form-control" placeholder="insert first name" name="first_name" id="first_name" ng-model="instructors[checkUrl].first_name" ng-maxlength="50" required/>
+    <input type="hidden" class="form-control" name="instructor_id" id="instructor_id" ng-model="instructors[checkUrl].instructor_id" />
+  </div>
+
+  <div class="form-group">
+    <label for="last_name">Last Name:</label>
+    <div ng-show="myForm.last_name.$invalid"></div>
+    <input type="text" class="form-control" placeholder="insert last name" name="last_name" id="last_name" ng-model="instructors[checkUrl].last_name" ng-maxlength="50" required/>
+  </div>
+
+  <div class="form-group">
+    <label for="category_title">Category Title:</label>
+    <div ng-show="myForm.category_title.$invalid"></div>
+    <select class="form-control" name="category_title" id="category_title" ng-model="instructors[checkUrl].category_title" required>
+      <option value=""></option>
+      <option ng-repeat="categories in category" value="{{categories.category_title}}">
+        {{categories.category_title}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <button ng-show="checkUrl===undefined" class="btn btn-primary"
+      ng-click="(myForm.first_name.$valid && myForm.last_name.$valid && myForm.category_title.$valid) 
+                ? function_instructors_details(instructors[checkUrl].first_name,instructors[checkUrl].last_name,
+                instructors[checkUrl].category_title,instructors[checkUrl].instructor_id, 'insert') : function_error()">SAVE</button>
+  </div>
+  <div class="form-group">
+    <button ng-show="checkUrl!==undefined" class="btn btn-primary"
+      ng-click="(myForm.first_name.$valid && myForm.last_name.$valid && myForm.category_title.$valid) 
+                ? function_instructors_details(instructors[checkUrl].first_name,instructors[checkUrl].last_name,
+                instructors[checkUrl].category_title,instructors[checkUrl].instructor_id, 'update') : function_error()">EDIT</button>
+  </div>
+</form>

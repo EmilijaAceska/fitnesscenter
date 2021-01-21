@@ -1,0 +1,48 @@
+<h3 class="text-center display-3 text-light">NEW NOTIFICATION</h3>
+<div class="alert alert-success" ng-show="successAlert">
+  You entered new notification successfuly!
+</div>
+<div class="alert alert-success" ng-show="successfullAlert">
+  You updated this notification successfuly!
+</div>
+<div class="alert alert-danger" ng-show="dangerAlert">
+  Please fill in the form correctly!
+</div>
+<div class="alert alert-info" ng-show="infoAlert">
+  The record already exists!
+</div>
+<form name="myForm" class="text-light">
+  <div class="form-group">
+    <label for="notification_title">Notification Title:</label>
+    <div ng-show="myForm.notification_title.$invalid"></div>
+    <input type="text" class="form-control" placeholder="notification title" name="notification_title" id="notification_title"
+      ng-model="notifications[checkUrl].notification_title" required/>
+    <input type="hidden" class="form-control" name="notification_id" id="notification_id" ng-model="notifications[checkUrl].notification_id" />
+  </div>
+  <div class="form-group">
+    <label for="notification_content">Notification content:</label>
+    <div ng-show="myForm.notification_content.$invalid"></div>
+    <input type="text" class="form-control" placeholder="payment date" name="notification_content" id="notification_content"
+    ng-model="notifications[checkUrl].notification_content" required/>
+  </div>
+  <div class="form-group">
+    <label for="members_id">Member ID:</label>
+    <div ng-show="myForm.members_id.$invalid"></div>
+    <select class="form-control" name="members_id" id="members_id" ng-model="notifications[checkUrl].members_id" required>
+      <option value=""></option>
+      <option ng-repeat="member in members" value="{{member.members_id}}">
+        {{member.f_name}} {{member.l_name}}</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <button ng-show="checkUrl===undefined" class="btn btn-primary"
+      ng-click="(myForm.notification_title.$valid && myForm.notification_content.$valid && myForm.members_id.$valid) 
+      ? function_notification_details(notifications[checkUrl].notification_title,notifications[checkUrl].notification_content,notifications[checkUrl].members_id,notifications[checkUrl].notification_id, 'insert') : function_error()">SAVE</button>
+  </div>
+  <div class="form-group">
+    <button ng-show="checkUrl!==undefined" class="btn btn-primary"
+      ng-click="(myForm.notification_title.$valid && myForm.notification_content.$valid && myForm.members_id.$valid) 
+      ? function_notification_details(notifications[checkUrl].notification_title,notifications[checkUrl].notification_content,notifications[checkUrl].members_id,notifications[checkUrl].notification_id, 'update') : function_error()">UPDATE</button>
+  </div>
+</form>

@@ -1,0 +1,52 @@
+<main class="container">
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center text-light">
+    <h1 class="display-4">PRODUCTS GALLERY</h1>
+    <p class="lead">Click and go!!!</p>
+  </div>
+
+  <div class="row  row-cols-md-3 mb-3 text-center">
+    <div class="col-sm-4" ng-repeat="products in products_gallery">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+          <h4 class="my-0 fw-normal">{{products.product_title}}</h4>
+        </div>
+        <div class="card-body">
+          <img class="card-img-top mx-auto" src="uploads/{{products.gallery_path}}" alt="{{products.gallery_path}}">
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Let's Go</li>
+          </ul>
+          <button type="button" class="w-100 btn btn-lg btn-outline-primary" ng-click="function_getId($index)"
+            data-toggle="modal" data-target="#myModal">GET STARTED</button>
+        </div>
+      </div>
+    </div>
+</main>
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Specifications: {{products[getId].product_title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="mx-auto">
+            <img src="uploads/{{products_gallery[getId].gallery_path}}" alt="{{products_gallery[getId].gallery_path}}" width="500px"
+              height="500px" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="mx-auto">
+            <p><strong>Description:</strong></p>
+            <p>{{products_gallery[getId].product_description}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<h3>Avtomobili</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4" ng-repeat="model in modeli">
+            <div class="card">
+                <img class="card-img-top" src="../uploads/{{model.marka_img}}" alt="Card image">
+                <div class="card-body">
+                  <h4 class="card-title">{{model.model_name}}</h4>
+                  <p class="card-text">{{model.color}} {{model.price}} eur </p>
+                  <a href="#" class="btn btn-primary">See Profile</a>
+                </div>
+              </div><!--/card-->
+        </div><!--end col-sm-4-->
+    </div><!--end row1-->
+</div><!--end container-->

@@ -1,0 +1,9 @@
+body {
+  background-image: url("../../../admin/uploads/welcome.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.table-dark {
+  opacity: 0.9 !important;
+}

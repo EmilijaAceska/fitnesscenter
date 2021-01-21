@@ -1,0 +1,43 @@
+<div class="container">
+    <h3 class="text-center text-warning display-3">MODELI</h3>
+    <!-- start row1 -->
+    <div class="row justify-content-center mt-3">
+        <form>
+            <!--start inputs-->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text text-warning">Search</span>
+                </div>
+                <input type="text" placeholder="Prebaraj po ime" name="searchByName" id="searchByName" ng-model="searchByName">
+                <input type="text" placeholder="Prebaraj po boja" name="searchByColor" id="searchByColor" ng-model="searchByColor">
+                <input type="number" placeholder="Prebaraj po cena" name="searchByPrice" id="searchByPrice" ng-model="searchByPrice">
+                <input type="number" placeholder="Prebaraj po km" name="searchByDistance" id="searchByDistance"
+                    ng-model="searchByDistance">
+                <select class="form-control" name="searchById" id="searchById" ng-model="searchById">
+                    <option>Site marki</option>
+                    <option ng-repeat="marka in marki" value="{{marka.marka_id}}">
+                        {{marka.marka_name}} ({{marka.country}})</option>
+                </select>
+            </div>
+        </form>
+        <!--end inputs-->
+    </div>
+    <!--end row1-->
+    <!-- start row2 -->
+    <div class="row">
+        <div class="col-sm-4"
+            ng-repeat="model in modeli | filter:{model_name:searchByName, color:searchByColor, price:searchByPrice, km:searchByDistance, marka_id:searchById}">
+            <div class="card">
+                <img class="card-img-top mx-auto" src="uploads/{{model.model_img}}" alt="{{model.model_img}}">
+                <div class="card-body font-weight-bold text-center">
+                    <h4 class="card-title text-warning">{{model.marka_name}} {{model.model_name}}</h4>
+                    <p class="card-text text-danger">{{model.color}} {{model.km}} km {{model.price}} EUR</p>
+                    <a href="#!single_model/{{$index}}" class="btn btn-outline-success">See specification</a>
+                </div>
+            </div>
+            <!--/card-->
+        </div>
+        <!--end col-sm-4-->
+    </div>
+    <!--end row2-->
+</div>

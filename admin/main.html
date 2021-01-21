@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.79.0">
+  <title>FITNESS CENTER</title>
+  <!--Bootstrap 4 Framework-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+  <!--AngularJS Framework-->
+  <script src="../assets/js/angular.min.js"></script>
+  <script src="../assets/js/angular-route.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/routes.js"></script>
+  <!--Icons-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+
+  <!-- Bootstrap core CSS -->
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+  <!-- Custom styles for this template -->
+  <!-- <link href="assets/css/dashboard.css" rel="stylesheet"> -->
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#!/main">FITNESS CENTER</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+      data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div></div>
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <form action="model/logout.php" method="POST">
+          <input type="submit" value="Log out">
+        </form>
+      </li>
+    </ul>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-lg-2 border-bottom">
+      <nav id="sidebarMenu" class="d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <!-- <a class="nav-link active" aria-current="page" href="#!/main">
+                <span data-feather="home"></span>
+                ADMIN
+              </a> -->
+              <a class="nav-link" href="#!/category">
+                <span data-feather="list"></span>
+                CATEGORY
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!/instructors">
+                <span data-feather="list"></span>
+                INSTRUCTORS
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!/products">
+                <span data-feather="list"></span>
+                PRODUCTS
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!/products_gallery">
+                <span data-feather="shopping-cart"></span>
+                PRODUCTS GALLERY
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!/members">
+                <span data-feather="users"></span>
+                MEMBERS
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!/schedules">
+                <span data-feather="bar-chart-2"></span>
+                SCHEDULES
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!/payment">
+                <span data-feather="shopping-cart"></span>
+                PAYMENT MENAGMENT
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!/notifications">
+                <span data-feather="message-square"></span>
+                NOTIFICATIONS
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!/orders">
+                <span data-feather="shopping-bag"></span>
+                ORDERS
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!/contact">
+                <span data-feather="shopping-bag"></span>
+                MESSAGES
+              </a>
+            </li>
+          </ul>
+
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>ADD NEW</span>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <a class="nav-link" href="#!/category_details">
+                <span data-feather="paperclip"></span>
+                New category
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!/instructors_details">
+                <span data-feather="paperclip"></span>
+                New instructor
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!/products_details">
+                <span data-feather="paperclip"></span>
+                New product
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!/products_gallery_details">
+                <span data-feather="paperclip"></span>
+                New gallery
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!members_details">
+                <span data-feather="user-plus"></span>
+                New member
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!/schedules_details">
+                <span data-feather="paperclip"></span>
+                New schedule
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!payment_details">
+                <span data-feather="paperclip"></span>
+                New payment
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!/notifications_details">
+                <span data-feather="send"></span>
+                New notification
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      </div>
+      <div class="col-md-9 ms-sm-auto col-lg-10 pl-lg-3 pr-lg-5 pl-md-5 pr-md-4 border-bottom container">
+      <main ng-view>
+        
+      </main>
+      <footer class="footer float-end">
+        <p class="text-light text-center">Template built by @Emilija Aceska | <span class="text-light text-center"><a href="#">Back to top</a></span></p>
+      </footer>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../assets/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+    integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+    crossorigin="anonymous"></script>
+  <script src="../assets/js/dashboard.js"></script>
+  
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<h3>Marki</h3>
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <!-- <th>marka_id</th> -->
+            <th>IMG</th>
+            <th></th>
+            <th><input type="text" placeholder="Prebaraj po ime" name="searchByName" id="searchByName" ng-model="searchByName"></th>
+            <th><input type="text" placeholder="Prebaraj po drzava" name="searchByCountry" id="searchByCountry" ng-model="searchByCountry"></th>
+            <th><input type="text" placeholder="Prebaraj po eu" name="searchByEu" id="searchByEu"
+              ng-model="searchByEu"></th>
+            <th>EDIT</th>
+            <th>DELETE</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="marka in marki | filter:{marka_name:searchByName,country:searchByCountry,eu:searchByEu}">
+            <!-- <td>{{$index}}</td> -->
+            <td><img style="width: 50px;height: 50px;" ng-src="../uploads/{{marka.marka_img}}" alt="{{marka.marka_img}}"/></td>
+            <td>{{marka.marka_id}}</td>
+            <td>{{marka.marka_name}}</td>
+            <td>{{marka.country}}</td>
+            <td>{{marka.eu}}</td>
+            <td><a href="#!details_marki/{{$index}}"><i class="fa fa-edit"></i></a></td>
+            <td><button type="button" title="IZBRISI" class="btn btn-danger" data-toggle="modal" data-target="#myModal" ng-click="function_getId($index);function_deleteRowMarki(marka.marka_id)">
+                <i class="fa fa-trash"></i>
+            </button></td>
+        </tr>
+    </tbody>
+</table>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header bg-danger">
+          <h4 class="modal-title">Delete marki</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="alert alert-info" ng-show="infoAlert">
+            Ovoj zapis ne moze da bide izbrisan!
+          </div>
+          Dali ste sigurni deka sakate da ja izbrisete marka {{marki[getId].marka_name}}..?
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button ng-show="!infoAlert" type="button" class="btn btn-danger" ng-click="function_deleteRow('marki',marki[getId].marka_id)">DELETE</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
+        </div>
+      </div>
+    </div>
+  </div>

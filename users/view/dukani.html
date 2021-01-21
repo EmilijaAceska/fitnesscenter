@@ -1,0 +1,53 @@
+<h3>Dukani</h3>
+<table class="table table-stripped table-hover">
+    <thead class="thead-dark">
+        <!-- <th>dukani_id</th> -->
+        <th>IMG</th>
+        <th></th>
+        <th><input type="text" placeholder="Prebaraj po ime" name="searchByName" id="searchByName" ng-model="searchByName"></th>
+        <th><input type="text" placeholder="Prebaraj po grad" name="searchByCity" id="searchByCity" ng-model="searchByCity"></th>
+        <th><input type="text" placeholder="Prebaraj po br_dukan" name="searchByShop" id="searchByShop" ng-model="searchByShop"></th>
+        <th>EDIT</th>
+        <th>DELETE</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dukan in dukani | filter:{ime_dukan:searchByName,grad:searchByCity,br_dukan:searchByShop}">
+            <td><img style="width: 50px; height: 50px;" ng-src="../uploads/{{dukan.dukan_img}}" alt="{{dukan.dukan_img}}"</td>
+            <td>{{dukan.dukani_id}}</td>
+            <td>{{dukan.ime_dukan}}</td>
+            <td>{{dukan.grad}}</td>
+            <td>{{dukan.br_dukan}}</td>
+            <td><a href="#!details_dukani/{{$index}}"><i class="fa fa-edit"></i></a></td>
+            <td><button type="button" title="IZBRISI" class="btn btn-danger" data-toggle="modal" data-target="#myModal" ng-click="function_getId($index);function_deleteRowDukani(dukan.dukani_id)" >
+                <i class="fa fa-trash"></i>
+            </button></td>
+        </tr>
+    </tbody>
+</table>
+<!--The Modal-->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!--Modal Header-->
+            <div class="modal-header bg-danger">
+                <h4 class="modal-title">Delete Dukani</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!--Modal body-->
+            <div class="modal-body">
+                <div class="alert alert-info" ng-show="infoAlert">
+                    Ovoj zapis ne moze da bide izbrisan!
+                </div>
+                Dali ste sigurni deka sakate da go izbrisite dukan {{dukani[getId].ime_dukan}}?
+            </div>
+
+            <!--Modal footer-->
+            <div class="modal-footer">
+                <button ng-show="!infoAlert" type="button" class="btn btn-danger" ng-click="function_deleteRow('dukani',dukani[getId].dukani_id)">DELETE</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
+            </div>
+        </div>
+    </div>
+</div>

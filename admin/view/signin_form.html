@@ -1,0 +1,28 @@
+<div class="container">
+  <form name="myForm" class="form-myForm text-light">
+    <h1 class="h3 mb-3 fw-normal text-center">SIGN IN to FITNESS CENTER</h1>
+    <div class="alert alert-success" ng-show="successAlert">
+      You signed in successfuly!
+    </div>
+    <div class="alert alert-danger" ng-show="dangerAlert">
+      Please fill in the form correctly!
+    </div>
+    <div class="alert alert-info" ng-show="infoAlert">
+      This username already exists!
+    </div>
+    <label for="admin_name" class="visually-hidden">Admin Name</label>
+    <div ng-show="myForm.admin_name.$invalid"></div>
+    <input type="admin_name" class="form-control" id="admin_name" name="admin_name" placeholder="Username" ng-model="admin_name" required>
+    <label for="admin_password" class="visually-hidden">Password</label>
+    <div ng-show="myForm.adin_password.$invalid"></div>
+    <input type="password" class="form-control" id="admin_password" name="admin_password" placeholder="Password" ng-model="admin_password" autocomplete="on" required>
+    <!-- <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div> -->
+    <button ng-show="checkUrl===undefined" class="btn btn-primary" 
+            ng-click="(myForm.admin_name.$valid && myForm.admin_password.$valid) 
+              ? function_admin_form(admin_name,admin_password) : function_error()">Sign In</button>
+  </form>
+</div>

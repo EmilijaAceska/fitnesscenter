@@ -1,0 +1,69 @@
+<div class="container">
+    <h3 class="text-center text-warning display-3">DUKANI</h3>
+    <!-- start row1 -->
+    <div class="row justify-content-center mt-3">
+        <form>
+            <!--start inputs-->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text text-warning">Search</span>
+                </div>
+                <input type="text" placeholder="Prebaraj po ime" name="searchByName" id="searchByName" ng-model="searchByName">
+                <input type="text" placeholder="Prebaraj po grad" name="searchByCity" id="searchByCity" ng-model="searchByCity">
+                <input type="number" placeholder="Prebaraj po br_dukan" name="searchByShop" id="searchByShop" ng-model="searchByShop">
+            </div>
+        </form>
+        <!--end inputs-->
+    </div>
+    <!--end row1-->
+    <!-- start row2 -->
+    <div class="row">
+        <div class="col-sm-4"
+            ng-repeat="dukan in dukani | filter:{ime_dukan:searchByName,grad:searchByCity,br_dukan:searchByShop}">
+            <div class="card">
+                <img class="card-img-top mx-auto" src="uploads/{{dukan.dukan_img}}" alt="{{dukan.dukan_img}}">
+                <div class="card-body font-weight-bold text-center">
+                    <h4 class="card-title text-warning">{{dukan.ime_dukan}}</h4>
+                    <!-- <p class="card-text text-danger">{{dukan.grad}} {{dukan.br_dukan}}</p> -->
+                    <button type="button" class="btn btn-outline-success" ng-click="function_getId($index)" data-toggle="modal" data-target="#myModal">See specification</button>
+                </div>
+            </div>
+            <!--/card-->
+        </div>
+        <!--end col-sm-4-->
+    </div>
+    <!--end row2-->
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header bg-success text-warning">
+                <h4 class="modal-title">Specifications: {{dukani[getId].ime_dukan}}</h4>
+                <button type="button" class="close text-warning" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-6 text-center">
+                        <img src="uploads/{{dukani[getId].dukan_img}}" alt="{{dukani[getId].dukan_img}}" width="200px"
+                            height="200px"/>
+                    </div>
+                    <div class="col-sm-6 text-success">
+                        <p><strong class="text-warning">Ime:</strong> {{dukani[getId].ime_dukan}}</p>
+                        <p><strong class="text-warning">Grad:</strong> {{dukani[getId].grad}}</p>
+                        <p><strong class="text-warning">Broj na dukan:</strong> {{dukani[getId].br_dukan}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-warning text-success" data-dismiss="modal">CANCEL</button>
+            </div>
+        </div>
+    </div>
+</div>

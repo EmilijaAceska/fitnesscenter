@@ -1,0 +1,60 @@
+<h3>Modeli</h3>
+<table class="table table-hover">
+<thead class="thead-dark">
+    <tr>
+        <!-- <th>model_id</th> -->
+        <th>IMG</th>
+        <th></th>
+        <th><input type="text" placeholder="Prebaraj po ime" name="searchByName" id="searchByName" ng-model="searchByName"></th>
+        <th><input type="text" placeholder="Prebaraj po boja" name="searchByColor" id="searchByColor" ng-model="searchByColor"></th>
+        <th><input type="text" placeholder="Prebaraj po cena" name="searchByPrice" id="searchByPrice" ng-model="searchByPrice"></th>
+        <th><input type="text" placeholder="Prebaraj po km" name="searchByDistance" id="searchByDistance" ng-model="searchByDistance"></th>
+        <th><select class="form-control" name="searchById" id="searchById" ng-model="searchById">
+          <option ng-repeat="marka in marki" value="{{marka.marka_id}}">
+            {{marka.marka_name}} ({{marka.country}})</option>
+        </select></th>
+        <th>EDIT</th>
+        <th>DELETE</th>
+    </tr>
+</thead>
+<tbody>
+    <tr ng-repeat="model in modeli | filter:{model_name:searchByName, color:searchByColor, price:searchByPrice, km:searchByDistance, marka_id:searchById}">
+        <td><img style="width: 50px;height: 50px;" ng-src="../uploads/{{model.model_img}}" alt="{{model.model_img}}"/></td>
+        <td>{{model.model_id}}</td>
+        <td>{{model.model_name}}</td>
+        <td>{{model.color}}</td>
+        <td>{{model.price}}</td>
+        <td>{{model.km}}</td>
+        <td>{{model.marka_name}}</td>
+        <td><a href="#!details_modeli/{{$index}}"><i class="fa fa-edit"></i></a></td>
+        <td><button type="button" title="IZBRISI" class="btn btn-danger" data-toggle="modal" data-target="#myModal" ng-click="function_getId($index)">
+            <i class="fa fa-trash"></i>
+        </button></td>
+    </tr>
+</tbody>
+</table>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header bg-danger">
+          <h4 class="modal-title">Delete modeli</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          Dali ste sigurni deka sakate da go izbrisete model {{modeli[getId].model_name}}..?
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" ng-click="function_deleteRow('modeli',modeli[getId].model_id)">DELETE</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,76 @@
+<h3 class="text-center display-3 text-light">SCHEDULES</h3>
+<div class="table-responsive">
+<table class="table table-hover table-sm table-dark text-light text-center">
+  <thead class="thead-dark">
+    <tr>
+      <th>Schedules ID</th>
+      <th>Workout Date</th>
+      <th>Product</th>
+      <th>Mambers</th>
+      <th>Instructor</th>
+      <th>EDIT</th>
+      <th>DELETE</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th><input type="text" placeholder="Search by DATE" name="searchByDATE" id="searchByDATE" ng-model="searchByDATE" /></th>
+      <th>
+        <select class="form-control" name="searchByPRODUCT" id="searchByPRODUCT" ng-model="searchByPRODUCT">
+          <option value="{{schedule.schedules_id}}">All</option>
+          <option ng-repeat="product in products" value="{{product.product_title}}"> {{product.product_title}}</option>
+        </select>
+      </th>
+      <th><input type="text" placeholder="Search by MEMBERS NAME" name="searchByMEMBER" id="searchByMEMBER" ng-model="searchByMEMBER" /></th>
+      <th><input type="text" placeholder="Search by Instructor" name="searchByInstructor" id="searchByInstructor" ng-model="searchByInstructor" /></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="schedule in schedules | filter:{schedules_id:searchByID,workout_date:searchByDATE,product_title:searchByPRODUCT,f_name:searchByMEMBER, first_name:searchByInstructor}">
+      <!-- <td>{{$index}}</td> -->
+      <td>{{schedule.schedules_id}}</td>
+      <td>{{schedule.workout_date}}</td>
+      <td>{{schedule.product_title}}</td>
+      <td>{{schedule.f_name}} {{schedule.l_name}}</td><!--MEMBERS-->
+      <td>{{schedule.first_name}} {{schedule.last_name}}</td><!--INSTRUCTORS-->
+      <td><a href="#!schedules_details/{{$index}}"><i class="fa fa-edit"></i></a></td>
+      <td><button type="button" title="DELETE" class="btn btn-danger" data-toggle="modal" data-target="#myModal"
+          ng-click="function_getId($index)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header bg-danger">
+        <h4 class="modal-title">DELETE SCHEDULE</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="alert alert-info" ng-show="infoAlert">
+          THIS RECORD CAN NOT BE DELETED!
+        </div>
+        <div class="alert alert-danger" ng-show="deleteAlert">
+          ARE YOU SURE YOU WANT TO DELETE SCHEDULE {{schedules[getId].schedules_id}}..?
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button ng-show="!infoAlert" type="button" class="btn btn-danger"
+          ng-click="function_deleteRow('schedules',schedules[getId].schedules_id)">DELETE</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>

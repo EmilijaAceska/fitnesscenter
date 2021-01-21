@@ -1,0 +1,82 @@
+<div class="container">
+    <h3 class="text-center text-warning display-3">VRABOTENI</h3>
+    <!-- start row1 -->
+    <div class="row justify-content-center mt-3">
+        <form>
+            <!--start inputs-->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text text-warning">Search</span>
+                </div>
+                <input type="text" placeholder="Prebaraj po ime" name="searchByName" id="searchByName" ng-model="searchByName">
+                <input type="text" placeholder="Prebaraj po prezime" name="searchBySurname" id="searchBySurname"
+                    ng-model="searchBySurname">
+                <input type="text" placeholder="Prebaraj po godini" name="searchByAge" id="searchByAge" ng-model="searchByAge">
+                <input type="text" placeholder="Prebaraj po staz" name="searchByInternship" id="searchByInternship"
+                    ng-model="searchByInternship">
+                <input type="number" placeholder="Prebaraj po br_dukan" name="searchByShop" id="searchByShop" ng-model="searchByShop">
+                <select class="form-control" name="searchById" id="searchById" ng-model="searchById">
+                    <option value="">Site dukani</option>
+                    <option ng-repeat="dukan in dukani" value="{{dukan.dukani_id}}"> {{dukan.ime_dukan}}
+                        {{dukan.grad}}
+                        {{dukan.br_dukan}}</option>
+                </select>
+            </div>
+        </form>
+        <!--end inputs-->
+    </div>
+    <!--end row1-->
+    <!-- start row2 -->
+    <div class="row">
+        <div class="col-sm-4"
+            ng-repeat="vraboten in vrabotenii | filter:{ime:searchByName,prezime:searchBySurname,godini:searchByAge,staz:searchByInternship,dukani_id:searchById}">
+            <div class="card">
+                <img class="card-img-top mx-auto" src="uploads/{{vraboten.vraboten_img}}" alt="{{vraboten.vraboten_img}}">
+                <div class="card-body font-weight-bold text-center">
+                    <h4 class="card-title text-warning">{{vraboten.ime}} {{vraboten.prezime}}</h4>
+                    <!-- <p class="card-text text-danger">{{vraboten.godini}} godini {{vraboten.staz}} godini staz</p> -->
+                    <button type="button" class="btn btn-outline-success" ng-click="function_getId($index)" data-toggle="modal" data-target="#myModal">See specification</button>
+                </div>
+            </div>
+            <!--/card-->
+        </div>
+        <!--end col-sm-4-->
+    </div>
+    <!--end row2-->
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header bg-success text-warning">
+                <h4 class="modal-title">Specifications: {{vrabotenii[getId].ime}}</h4>
+                <button type="button" class="close text-warning" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-6 text-center">
+                        <img src="uploads/{{vrabotenii[getId].vraboten_img}}" alt="{{vrabotenii[getId].vraboten_img}}" width="200px"
+                            height="200px" />
+                    </div>
+                    <div class="col-sm-6 text-success">
+                        <p><strong class="text-warning">Ime:</strong> {{vrabotenii[getId].ime}}</p>
+                        <p><strong class="text-warning">Prezime:</strong> {{vrabotenii[getId].prezime}}</p>
+                        <p><strong class="text-warning">Vozdrast:</strong> {{vrabotenii[getId].godini}}</p>
+                        <p><strong class="text-warning">Vozrast:</strong> {{vrabotenii[getId].godini}}</p>
+                        <p><strong class="text-warning">Staz:</strong> {{vrabotenii[getId].staz}}</p>
+                        <p><strong class="text-warning">Vraboten/a vo:</strong> {{vrabotenii[getId].ime_dukan}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-warning text-success" data-dismiss="modal">CANCEL</button>
+            </div>
+        </div>
+    </div>
+</div>

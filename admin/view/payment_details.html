@@ -1,0 +1,61 @@
+<h3 class="text-center display-3 text-light">NEW PAYMENT</h3>
+<div class="alert alert-success" ng-show="successAlert">
+  You entered new payment successfuly!
+</div>
+<div class="alert alert-success" ng-show="successfullAlert">
+  You updated this payment successfuly!
+</div>
+<div class="alert alert-danger" ng-show="dangerAlert">
+  Please fill in the form correctly!
+</div>
+<div class="alert alert-info" ng-show="infoAlert">
+  The record already exists!
+</div>
+<form name="myForm" class="text-light">
+    <div class="form-group">
+    <label for="product_id">Product ID:</label>
+    <div ng-show="myForm.product_id.$invalid"></div>
+    <select class="form-control" name="product_id" id="product_id" ng-model="payment[checkUrl].product_id" required>
+      <option value=""></option>
+      <option ng-repeat="products in products" value="{{products.product_id}}">
+        {{products.product_title}}</option>
+    </select>
+    <input type="hidden" class="form-control" name="payment_id" id="payment_id" ng-model="payment[checkUrl].payment_id" />
+  </div>
+  <div class="form-group">
+    <label for="members_id">Product ID:</label>
+    <div ng-show="myForm.members_id.$invalid"></div>
+    <select class="form-control" name="members_id" id="members_id" ng-model="payment[checkUrl].members_id" required>
+      <option value=""></option>
+      <option ng-repeat="member in members" value="{{member.members_id}}">
+        {{member.f_name}} {{member.l_name}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <div ng-show="myForm.payment_status.$invalid"></div>
+    <label for="payment_status">Payment STATUS PAID/NOTPAID:</label>
+    <select class="form-control" placeholder="payment status" name="payment_status" id="payment_status" 
+    ng-model="payment[checkUrl].payment_status" required>
+      <option value="PAID">PAID</option>
+      <option value="NOTPAID">NOTPAID</option>
+    </select>
+    <!-- <input type="text" class="form-control" placeholder="payment status" name="payment_status" id="payment_status" 
+    ng-model="payment[checkUrl].payment_status" required/>   -->
+  </div>
+  <div class="form-group">
+    <label for="payment_date">Payment DATE (yyyy-mm-dd):</label>
+    <div ng-show="myForm.payment_date.$invalid"></div>
+    <input type="text" class="form-control" placeholder="payment date" name="payment_date" id="payment_date"
+      ng-model="payment[checkUrl].payment_date" required/>
+  </div>
+  <div class="form-group">
+    <button ng-show="checkUrl===undefined" class="btn btn-primary"
+      ng-click="(myForm.payment_status.$valid && myForm.payment_date.$valid && myForm.product_id.$valid && myForm.members_id.$valid) 
+      ? function_payment_details(payment[checkUrl].product_id,payment[checkUrl].members_id,payment[checkUrl].payment_status,payment[checkUrl].payment_date,payment[checkUrl].payment_id, 'insert') : function_error()">SAVE</button>
+  </div>
+  <div class="form-group">
+    <button ng-show="checkUrl!==undefined" class="btn btn-primary"
+      ng-click="(myForm.payment_status.$valid && myForm.payment_date.$valid && myForm.product_id.$valid && myForm.members_id.$valid) 
+      ? function_payment_details(payment[checkUrl].product_id,payment[checkUrl].members_id,payment[checkUrl].payment_status,payment[checkUrl].payment_date,payment[checkUrl].payment_id, 'update') : function_error()">EDIT</button>
+  </div>
+</form>

@@ -1,0 +1,20 @@
+<h3>Details Slider</h3>
+<div class="alert alert-success" ng-show="successAlert">
+  Uspesno vnesovte slika!
+</div>
+<div class="alert alert-danger" ng-show="dangerAlert">
+  Popolnete go pravilno formularot!
+</div>
+<form name="myForm">
+  <div class="form-group">
+    <label for="slider_img">Ime na slika:</label>
+    <input type="text" class="form-control" placeholder="Ime na slika" name="slider_img" id="slider_img"
+      ng-model="slider.slider_img">
+    <input type="hidden" class="form-control" name="slider_id" id="slider_id" ng-model="slider.slider_id" />
+  </div>
+  <div class="form-group">
+  <div class="form-group">
+    <button class="btn btn-primary"
+      ng-click="(myForm.slider_img.$valid) ? function_details_slider(slider.slider_img, 'insert') : function_error()">INSERT</button>
+  </div>
+</form>

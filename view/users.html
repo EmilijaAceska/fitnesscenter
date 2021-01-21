@@ -1,0 +1,30 @@
+<div class="container">
+  <form name="myForm" class="form-myForm">
+    <h1 class="h3 mb-3 fw-normal text-center">SIGN IN</h1>
+
+    <label for="fname" class="visually-hidden">User First Name Name</label>
+    <div ng-show="myForm.fname.$invalid"></div>
+    <input type="text" id="fname" name="fname" class="form-control" placeholder="user name" ng-model="fname" required>
+    <input type="hidden" id="admin_id" name="admin_id" ng-model="admin_id"/>
+
+    <label for="lname" class="visually-hidden">User Last Name</label>
+    <div ng-show="myForm.lname.$invalid"></div>
+    <input type="text" id="lname" name="lname" class="form-control" placeholder="user  last name" ng-model="lname" required>
+
+    <label for="email" class="visually-hidden">User Email</label>
+    <div ng-show="myForm.username.$invalid"></div>
+    <input type="email" id="email" name="email" class="form-control" placeholder="email" ng-model="email" required>
+
+    <label for="password" class="visually-hidden">Password</label>
+    <div ng-show="myForm.password.$invalid"></div>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Password" ng-model="password" required>
+    <br/>
+    <!-- <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div> -->
+    <button ng-show="checkUrl===undefined" class="btn btn-primary"
+      ng-click="(myForm.fname.$valid && myForm.lname.$valid && myForm.email.$valid && myForm.password.$valid) ? function_users_details(fname,lname,email,password) : function_error()">Sign In</button>
+  </form>
+</div>

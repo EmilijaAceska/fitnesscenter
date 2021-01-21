@@ -1,0 +1,65 @@
+<h3 class="text-center display-3 text-light">PRODUCTS GALLERY</h3>
+<div class="table-responsive">
+<table class="table table-hover table-sm table-dark text-light text-center">
+  <thead class="thead-dark">
+    <tr>
+      <th>Product Gallery ID</th>
+      <th>Product gallery path</th>
+      <th>Product ID</th>
+      <th>EDIT</th>
+      <th>DELETE</th>
+    </tr>
+    <tr>
+      <th><input type="text" placeholder="Search by ID" name="searchByID" id="searchByID" ng-model="searchByID" /></th>
+      <th></th>
+      <th>
+        <select class="form-control" name="searchByPRODUCT" id="searchByPRODUCT" ng-model="searchByPRODUCT">
+          <option value="{{products.products_gallery_id}}">All</option>
+          <option ng-repeat="product in products" value="{{product.product_title}}">{{product.product_title}}</option>
+        </select>
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="products in products_gallery | filter:{products_gallery_id:searchByID,product_title:searchByPRODUCT}">
+      <!-- <td>{{$index}}</td> -->
+      <td>{{products.products_gallery_id}}</td>
+      <td><img src="../uploads/{{products.gallery_path}}" alt="{{products.gallery_path}}" width="100" height="100"></td>
+      <td>{{products.product_title}}</td>
+      <td><a href="#!products_gallery_details/{{$index}}"><i class="fa fa-edit"></i></a></td>
+      <td><button type="button" title="DELETE" class="btn btn-danger" data-toggle="modal" data-target="#myModal"
+          ng-click="function_getId($index)">
+          <i class="fa fa-trash"></i>
+        </button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header bg-danger">
+        <h4 class="modal-title">DELETE GALLERY</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        ARE YOU SURE YOU WANT TO DELETE GALLERY {{products_gallery[getId].products_gallery_id}}..?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger"
+          ng-click="function_deleteRow('products_gallery',products_gallery[getId].products_gallery_id)">DELETE</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
+      </div>
+
+    </div>
+  </div>
+</div>

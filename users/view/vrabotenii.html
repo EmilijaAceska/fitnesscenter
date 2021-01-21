@@ -1,0 +1,64 @@
+<h3>Vraboteni</h3>
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <!-- <th>vraboteni_id</th> -->
+            <th>IMG</th>
+            <th></th>
+            <th><input type="text" placeholder="Prebaraj po ime" name="searchByName" id="searchByName" ng-model="searchByName"></th>
+            <th><input type="text" placeholder="Prebaraj po prezime" name="searchBySurname" id="searchBySurname" ng-model="searchBySurname"></th>
+            <th><input type="text" placeholder="Prebaraj po godini" name="searchByAge" id="searchByAge" ng-model="searchByAge"></th>
+            <th><input type="text" placeholder="Prebaraj po staz" name="searchByInternship" id="searchByInternship" ng-model="searchByInternship"></th>
+            <th><input type="text" placeholder="Prebaraj po br_dukan" name="searchByShop" id="searchByShop"
+              ng-model="searchByShop"></th>
+            <th><select class="form-control" name="searchById" id="searchById" ng-model="searchById">
+                <option ng-repeat="dukan in dukani" value="{{dukan.dukani_id}}"> {{dukan.ime_dukan}}
+                  {{dukan.grad}}
+                  {{dukan.br_dukan}}</option>
+              </select></th>
+            <th>EDIT</th>
+            <th>DELETE</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="vraboten in vrabotenii | filter:{ime:searchByName,prezime:searchBySurname,godini:searchByAge,staz:searchByInternship,dukani_id:searchById}">
+            <!-- <td>{{$index}}</td> -->
+            <td><img style="width: 50px;height: 50px;" ng-src="../uploads/{{vraboten.vraboten_img}}" alt="{{vraboten.vraboten_img}}"/></td>
+            <td>{{vraboten.vraboteni_id}}</td>
+            <td>{{vraboten.ime}}</td>
+            <td>{{vraboten.prezime}}</td>
+            <td>{{vraboten.godini}}</td>
+            <td>{{vraboten.staz}}</td>
+            <td>{{vraboten.ime_dukan}}</td>
+            <td></td>
+            <td><a href="#!details_vrabotenii/{{$index}}"><i class="fa fa-edit"></i></a></td>
+            <td><button type="button" title="IZBRISI" class="btn btn-danger" ng-click="function_getId($index)" data-toggle="modal" data-target="#myModal">
+                <i class="fa fa-trash"></i>
+            </button></td>
+        </tr>
+    </tbody>
+</table>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header bg-danger">
+          <h4 class="modal-title">Delete vraboteni</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          Dali ste sigurni deka sakate da go izbrisite vraboten {{vrabotenii[getId].ime}}..?
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" ng-click="function_deleteRow('vrabotenii',vrabotenii[getId].vraboteni_id)">DELETE</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
+        </div>
+      </div>
+    </div>
+  </div>

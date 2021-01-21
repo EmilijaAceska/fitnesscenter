@@ -1,0 +1,46 @@
+<h3>Details Vrabotenii</h3>
+<div class="alert alert-success" ng-show="successAlert">
+    Uspesno vnesovte vraboten!!
+</div>
+<div class="alert alert-danger" ng-show="dangerAlert">
+    Popolnete go formularot pravilno!
+</div>
+<form name="myForm">
+    <div class="form-group">
+        <label for="ime">Ime:</label>
+        <input type="text" class="form-control" placeholder="Ime na vraboten" name="ime" id="ime" ng-model="vrabotenii[checkUrl].ime">
+        <input type="hidden" class="form-control" name="vraboteni_id" id="marka_id" ng-model="vrabotenii[checkUrl].vraboteni_id" />
+    </div>
+    <div class="form-group">
+        <label for="prezime">Prezime:</label>
+        <input type="text" class="form-control" placeholder="Prezime na vraboten" name="prezime" id="prezime" ng-model="vrabotenii[checkUrl].prezime">
+    </div>
+    <div class="form-group">
+        <label for="godini">Godini:</label>
+        <input type="text" class="form-control" placeholder="Godini na vraboten" name="godini" id="godini" ng-model="vrabotenii[checkUrl].godini">
+    </div>
+    <div class="form-group">
+        <label for="staz">Staz:</label>
+        <input type="text" class="form-control" placeholder="Staz na vraboten" name="staz" id="staz" ng-model="vrabotenii[checkUrl].staz">
+    </div>
+    <div class="form-group">
+        <label for="dukani_id">Id na dukan:</label>
+        <div ng-show="myForm.dukani_id.$invalid" class="alert alert-danger">Brojot mora da ima minimum 1 karakter:</div>
+        <!-- <input type="number" class="form-control" placeholder="Id na dukan" name="dukani_id" id="dukani_id" ng-model="dukani_id" ng-minlength="1"> -->
+        <select class="form-control" name="dukani_id" id="dukani_id" ng-model="vrabotenii[checkUrl].dukani_id">
+            <option ng-repeat="dukan in dukani" value="{{dukan.dukani_id}}">
+                {{dukan.ime_dukan}} ({{dukan.grad}})</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="vraboten_img">Prikaci slika</label>
+        <input type="text" class="form-control" placeholder="Prikaci slika" name="vraboten_img" id="vraboten_img" ng-model="vrabotenii[checkUrl].vraboten_img"/>
+    </div>
+    <div ng-show="checkUrl===undefined" class="form-group">
+        <button class="btn btn-primary"
+            ng-click="(myForm.dukani_id.$valid) ? function_details_vrabotenii(vrabotenii[checkUrl].ime,vrabotenii[checkUrl].prezime,vrabotenii[checkUrl].godini,vrabotenii[checkUrl].staz,vrabotenii[checkUrl].dukani_id,vrabotenii[checkUrl].vraboten_img,vrabotenii[checkUrl].vraboteni_id, 'insert') : function_error()">SAVE</button>
+    </div>
+    <div ng-show="checkUrl!==undefined" class="form-group">
+        <button class="btn btn-primary" ng-click="(myForm.dukani_id.$valid) ? function_details_vrabotenii(vrabotenii[checkUrl].ime,vrabotenii[checkUrl].prezime,vrabotenii[checkUrl].godini,vrabotenii[checkUrl].staz,vrabotenii[checkUrl].dukani_id,vrabotenii[checkUrl].vraboten_img,vrabotenii[checkUrl].vraboteni_id, 'update') : function_error()">EDIT</button>
+    </div>
+</form>

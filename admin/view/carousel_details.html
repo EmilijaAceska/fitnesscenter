@@ -1,0 +1,20 @@
+<h3>Details Slider</h3>
+<div class="alert alert-success" ng-show="successAlert">
+  You entered your image successfully!
+</div>
+<div class="alert alert-danger" ng-show="dangerAlert">
+Please fill in the form correctly!
+</div>
+<form name="myForm">
+  <div class="form-group">
+    <label for="carousel_img">Image:</label>
+    <div ng-show="myForm.carousel_img.$invalid"></div>
+    <input type="text" class="form-control" placeholder="Ime na slika" name="carousel_img" id="carousel_img" ng-model="carousel.carousel_img" required/>
+    <input type="hidden" class="form-control" name="carousel_id" id="carousel_id" ng-model="carousel.carousel_id" />
+  </div>
+  <div class="form-group">
+  <div class="form-group">
+    <button class="btn btn-primary"
+      ng-click="(myForm.carousel_img.$valid) ? function_details_carousel(carousel.carousel_img, 'insert') : function_error()">INSERT</button>
+  </div>
+</form>

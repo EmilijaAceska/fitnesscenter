@@ -1,0 +1,73 @@
+<h3 class="text-center display-3 text-light">MEMBERS</h3>
+<div class="table-responsive">
+<table class="table table-hover table-sm text-center table-dark">
+  <thead class="thead-dark">
+    <tr>
+      <th></th>
+      <th>Members Id</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone number</th>
+      <th>UPDATE</th>
+      <th>DELETE</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>SEARCH IN MEMBERS:</th>
+      <th><input type="text" placeholder="Search by First Name" name="searchByFName" id="searchByFName" ng-model="searchByFName" /></th>
+      <th><input type="text" placeholder="Search by Last Name" name="searchByLName" id="searchByLName" ng-model="searchByLName" /></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="member in members | filter:{f_name:searchByFName,l_name:searchByLName}">
+      <!-- <td>{{$index}}</td> -->
+      <td></td>
+      <td>{{member.members_id}}</td>
+      <td>{{member.f_name}}</td>
+      <td>{{member.l_name}}</td>
+      <td>{{member.email}}</td>
+      <td>{{member.phone_number}}</td>
+      <td><a href="#!members_details/{{$index}}"><i class="fa fa-edit"></i></a></td>
+      <td><button type="button" title="IZBRISI" class="btn btn-danger" data-toggle="modal" data-target="#myModal"
+          ng-click="function_getId($index);function_deleteRowMembers(member.members_id)">
+          <i class="fa fa-trash"></i>
+        </button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header bg-danger">
+        <h4 class="modal-title">DELETE CATEGORY</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="alert alert-info" ng-show="infoAlert">
+          THIS RECORD CAN NOT BE DELETED!
+        </div>
+        <div class="alert alert-danger" ng-show="deleteAlert">
+          ARE YOU SURE YOU WANT TO DELETE MEMBER {{members[getId].f_name}}..?
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button ng-show="!infoAlert" type="button" class="btn btn-danger"
+          ng-click="function_deleteRow('members',members[getId].members_id)">DELETE</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>

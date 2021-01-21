@@ -1,0 +1,46 @@
+<h3>SLIDER</h3>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Slider_id</th>
+      <th>IMG</th>
+      <th>DELETE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="slider in slider">
+      <td>{{slider.slider_id}}</td>
+      <td><img style="width: 50px;height: 50px;" ng-src="../uploads/{{slider.slider_img}}" alt="{{slider.slider_img}}" />
+      </td>
+      <td><button type="button" title="DELETE" class="btn btn-danger" data-toggle="modal" data-target="#myModal"
+          ng-click="function_getId($index)">
+          <i class="fa fa-trash"></i>
+        </button></td>
+    </tr>
+  </tbody>
+</table>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header bg-danger">
+        <h4 class="modal-title">Delete slika</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Dali ste sigurni deka sakate da ja izbrisete slika {{slider[getId].slider_id}}..?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button ng-show="!infoAlert" type="button" class="btn btn-danger"
+          ng-click="function_deleteRow('slider',slider[getId].slider_id)">DELETE</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>

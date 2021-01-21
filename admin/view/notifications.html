@@ -1,0 +1,70 @@
+<h3 class="text-center display-3 text-light">NOTIFICATIONS</h3>
+<div class="table-responsive">
+<table class="table table-hover table-sm table-dark text-light text-center">
+  <thead class="thead-dark">
+    <tr>
+      <th>Notification ID</th>
+      <th>Notification Title</th>
+      <th>Notification content</th>
+      <th>Mambers ID</th>
+      <th>EDIT</th>
+      <th>DELETE</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th><input type="text" placeholder="Search in MEMBERS NAME" name="searchByMEMBER" id="searchByMEMBER" ng-model="searchByMEMBER" size="15" /></th>
+      <th></th>
+      <th></th>
+    </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      ng-repeat="notification in notifications | filter:{notification_id:searchByID,notification_title:searchByTITLE,f_name:searchByMEMBER}">
+      <!-- <td>{{$index}}</td> -->
+      <td>{{notification.notification_id}}</td>
+      <td>{{notification.notification_title}}</td>
+      <td>{{notification.notification_content}}</td>
+      <td>{{notification.f_name}} {{notification.l_name}}</td>
+      <td><a href="#!notifications_details/{{$index}}"><i class="fa fa-edit"></i></a></td>
+      <td><button type="button" title="DELETE" class="btn btn-danger" data-toggle="modal" data-target="#myModal"
+          ng-click="function_getId($index)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header bg-danger">
+        <h4 class="modal-title">DELETE NOTIFICATION</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="alert alert-info" ng-show="infoAlert">
+          THIS RECORD CAN NOT BE DELETED!
+        </div>
+        <div class="alert alert-danger" ng-show="deleteAlert">
+          ARE YOU SURE YOU WANT TO DELETE NOTIFICATION {{notifications[getId].notification_id}}..?
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button ng-show="!infoAlert" type="button" class="btn btn-danger"
+          ng-click="function_deleteRow('notifications',notifications[getId].notification_id)">DELETE</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>

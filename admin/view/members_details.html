@@ -1,0 +1,50 @@
+<h3 class="text-center display-3 text-light">CATEGORIES</h3>
+<div class="alert alert-success" ng-show="successAlert">
+  You entered new member successfuly!
+</div>
+<div class="alert alert-success" ng-show="successfullAlert">
+  You updated this member successfuly!
+</div>
+<div class="alert alert-danger" ng-show="dangerAlert">
+  Please fill in the form correctly!
+</div>
+<div class="alert alert-info" ng-show="infoAlert">
+  The record already exists!
+</div>
+<form name="myForm" class="text-light">
+  <div class="form-group">
+    <label for="f_name">First Name:</label>
+    <div ng-show="myForm.f_name.$invalid"></div>
+    <input type="text" class="form-control" placeholder="insert first name" name="f_name" id="f_name" ng-model="members[checkUrl].f_name" ng-maxlength="50" required/>
+    <input type="hidden" class="form-control" name="members_id" id="members_id" ng-model="members[checkUrl].members_id" />
+  </div>
+
+  <div class="form-group">
+    <label for="l_name">Last Name:</label>
+    <div ng-show="myForm.l_name.$invalid"></div>
+    <input type="text" class="form-control" placeholder="insert last name" name="l_name" id="l_name" ng-model="members[checkUrl].l_name" ng-maxlength="50" required/>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <div ng-show="myForm.email.$invalid"></div>
+    <input type="text" class="form-control" placeholder="insert email" name="email" id="email" ng-model="members[checkUrl].email" ng-maxlength="50" required/>
+  </div>
+
+  <div class="form-group">
+    <label for="phone_number">Phone Number:</label>
+    <div ng-show="myForm.number.$invalid"></div>
+    <input type="text" class="form-control" placeholder="insert phone number" name="phone_number" id="phone_number" ng-model="members[checkUrl].phone_number" ng-maxlength="15" required/>
+  </div>
+
+  <div class="form-group">
+    <button ng-show="checkUrl===undefined" class="btn btn-primary"
+      ng-click="(myForm.f_name.$valid && myForm.l_name.$valid && myForm.email.$valid && myForm.phone_number.$valid) 
+      ? function_members_details(members[checkUrl].f_name,members[checkUrl].l_name,members[checkUrl].email,members[checkUrl].phone_number,members[checkUrl].members_id, 'insert') : function_error()">SAVE</button>
+  </div>
+  <div class="form-group">
+    <button ng-show="checkUrl!==undefined" class="btn btn-primary"
+      ng-click="(myForm.f_name.$valid && myForm.l_name.$valid && myForm.email.$valid && myForm.phone_number.$valid) 
+      ? function_members_details(members[checkUrl].f_name,members[checkUrl].l_name,members[checkUrl].email,members[checkUrl].phone_number,members[checkUrl].members_id, 'update') : function_error()">EDIT</button>
+  </div>
+</form>

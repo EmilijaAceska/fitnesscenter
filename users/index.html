@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FITNESS CENTER</title>
+<!--Bootstrap 4 Framework-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!--AngularJS Framework-->
+  <script src="../assets/js/angular.min.js"></script>
+  <script src="../assets/js/angular-route.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/routes.js"></script>
+<!--Icons-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+<!-- Bootstrap core CSS -->
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+</style>
+
+<!-- Custom styles for this template -->
+<!-- <link href="assets/css/dashboard.css" rel="stylesheet"> -->
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+  <header>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <!-- Brand -->
+      <a class="navbar-brand" href="#">FITNESS CENTER</a>
+    
+      <!-- Links -->
+      <ul class="navbar-nav pl-5">    
+        <li class="nav-item">
+          <a class="nav-link" href="#!/products">PRODUCTS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#!/products_gallery">PRODUCTS GALLERY</a>
+        </li>
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            MY PROFILE
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#!/orders_details">NEW ORDER</a>
+            <a class="dropdown-item" href="#!/schedules">MY SCHEDULE</a>
+            <a class="dropdown-item" href="#!/notifications">MY NOTIFICATIONS</a>
+            <a class="dropdown-item" href="#!/contact_details">SEND MESSAGE</a>
+          </div>
+        </li>
+        <li class="nav-item text-nowrap pl-5">
+          <form action="../model/logout.php" method="POST">
+            <input type="submit" value="Log out">
+          </form>
+        </li>
+      </ul>
+      </nav>
+  </header>
+  <main>
+    <ng-view></ng-view>
+  </main>
+  <footer class="text-light text-center float-end">
+    <p>| Template built by &copyEmilija Aceska | </p>
+  </footer>
+  <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+    integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+  <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

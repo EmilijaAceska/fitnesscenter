@@ -1,0 +1,36 @@
+<div class="container">
+  <form name="myForm" class="form-myForm text-light">
+    <a href="#!/signin_form">
+      <button class="w-100 btn btn-lg btn-primary mt-3">Already registered</button>
+    </a>
+    <h1 class="h3 mb-3 fw-normal text-center">REGISTER to FITNESS CENTER</h1>
+    <div class="alert alert-success" ng-show="successAlert">
+      Your registration was successfuly!
+    </div>
+    <div class="alert alert-danger" ng-show="dangerAlert">
+      Please fill in the form correctly!
+    </div>
+    <label for="first_name" class="visually-hidden">First Name</label>
+    <div ng-show="myForm.first_name.$invalid"></div>
+    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" ng-model="first_name" required>
+
+    <label for="last_name" class="visually-hidden">Last Name</label>
+    <div ng-show="myForm.last_name.$invalid"></div>
+    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name" ng-model="last_name" required>
+
+    <label for="email" class="visually-hidden">Email address</label>
+    <div ng-show="myForm.email.$invalid"></div>
+    <input type="email" class="form-control" id="email" name="email" placeholder="Email address" ng-model="email" required>
+
+    <label for="password" class="visually-hidden">Password</label>
+    <div ng-show="myForm.password.$invalid"></div>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="password" autocomplete="on" required>
+
+    <!-- <label for="confirmPassword" class="visually-hidden">Confirm Password</label>
+    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required> -->
+    
+    <button ng-show="checkUrl===undefined" class="btn btn-primary"
+      ng-click="(myForm.first_name.$valid && myForm.last_name.$valid && myForm.email.$valid && myForm.password.$valid) 
+          ? function_registration_form(first_name,last_name,email,password) : function_error()">REGISTER</button>
+  </form>
+</div>

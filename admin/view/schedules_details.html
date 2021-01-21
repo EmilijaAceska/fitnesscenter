@@ -1,0 +1,64 @@
+<h3 class="text-center display-3 text-light">NEW SCHEDULES</h3>
+<div class="alert alert-success" ng-show="successAlert">
+  You entered new schedule successfuly!
+</div>
+<div class="alert alert-success" ng-show="successfullAlert">
+  You updated this schedule successfuly!
+</div>
+<div class="alert alert-danger" ng-show="dangerAlert">
+  Please fill in the form correctly!
+</div>
+<div class="alert alert-info" ng-show="infoAlert">
+  The record already exists!
+</div>
+<form name="myForm" class="text-light">
+  <div class="form-group">
+    <label for="workout_date">Product Title (yyyy-mm-dd hh:mm:ss):</label>
+    <div ng-show="myForm.workout_date.$invalid"></div>
+    <input type="text" class="form-control" placeholder="yyyy-mm-dd" name="workout_date" id="workout_date"
+      ng-model="schedules[checkUrl].workout_date" required/>
+    <input type="hidden" class="form-control" name="schedules_id" id="schedules_id"
+      ng-model="schedules[checkUrl].schedules_id" />
+  </div>
+  <div class="form-group">
+    <label for="product_id">Product ID:</label>
+    <div ng-show="myForm.product_id.$invalid"></div>
+    <select class="form-control" name="product_id" id="product_id" ng-model="schedules[checkUrl].product_id" required>
+      <option value=""></option>
+      <option ng-repeat="products in products" value="{{products.product_id}}">
+        {{products.product_title}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="members_id">Member:</label>
+    <div ng-show="myForm.members_id.$invalid"></div>
+    <select class="form-control" name="members_id" id="members_id" ng-model="schedules[checkUrl].members_id" required>
+      <option value=""></option>
+      <option ng-repeat="member in members" value="{{member.members_id}}">
+        {{member.f_name}} {{member.l_name}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="instructor_id">Instructor:</label>
+    <div ng-show="myForm.instructor_id.$invalid"></div>
+    <select class="form-control" name="instructor_id" id="instructor_id" ng-model="schedules[checkUrl].instructor_id" required>
+      <option value=""></option>
+      <option ng-repeat="instructor in instructors" value="{{instructor.instructor_id}}">
+        {{instructor.f_name}} {{instructor.l_name}} ({{instructor.category_title}})</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <button ng-show="checkUrl===undefined" class="btn btn-primary"
+      ng-click="(myForm.workout_date.$valid && myForm.product_id.$valid && myForm.members_id.$valid && myForm.instructor_id.$valid) 
+      ? function_schedules_details(schedules[checkUrl].workout_date,schedules[checkUrl].product_id,schedules[checkUrl].members_id,
+      schedules[checkUrl].instructor_id,schedules[checkUrl].schedules_id, 'insert') : function_error()">SAVE</button>
+  </div>
+  <div class="form-group">
+    <button ng-show="checkUrl!==undefined" class="btn btn-primary"
+      ng-click="(myForm.workout_date.$valid && myForm.product_id.$valid && myForm.members_id.$valid && myForm.instructor_id.$valid) 
+      ? function_schedules_details(schedules[checkUrl].workout_date,schedules[checkUrl].product_id,schedules[checkUrl].members_id,
+      schedules[checkUrl].instructor_id,schedules[checkUrl].schedules_id, 'update') : function_error()">UPDATE</button>
+  </div>
+</form>

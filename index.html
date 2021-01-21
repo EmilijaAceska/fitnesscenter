@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FITNESS CENTER</title>
+  <!--Bootstrap 4 Framework-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!--AngularJS Framework-->
+  <script src="assets/js/angular.min.js"></script>
+  <script src="assets/js/angular-route.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/routes.js"></script>
+  <script src="assets/js/angular.min.js.map"></script>
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+  
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+    #no_background{
+      background-image: none !important;
+    }
+  </style>
+
+  <!--Icons-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!--My CSS-->
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+  <header>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <!-- Brand -->
+      <a class="navbar-brand" href="#!/about">FITNESS CENTER</a>
+      <!-- Links -->
+      <ul class="navbar-nav pl-5">
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#!/products">PRODUCTS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#!/about">ABOUT US</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#!/orders_details">ORDER NOW</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#!/contact_details">CONTACT</a>
+        </li>
+        <ul class="navbar-nav pl-5">
+          <li class="nav-item text-nowrap">
+            <a class="nav-link text-light" href="#!/registration_form">REGISTER NOW</a>
+          </li>
+          <li class="nav-item text-nowrap">
+            <a class="nav-link text-light" href="#!/signin_form">Sign in</a>
+          </li>
+        </ul>
+    </nav>
+  </header>
+  <main>
+  <ng-view></ng-view>
+  </main>
+  <footer class="blog-footer float-end">
+        <p class="text-light text-center">| Template built by @Emilija Aceska | </p>
+  </footer>
+</body>
+</html>

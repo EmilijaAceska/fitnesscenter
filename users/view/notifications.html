@@ -1,0 +1,35 @@
+<h3 class="text-center display-3 text-light">NOTIFICATIONS</h3>
+<div class="container table-responsive">
+<table class="table table-hover table-sm table-dark text-light">
+  <thead class="thead-dark">
+    <tr>
+      <th></th>
+      <th>Notification ID</th>
+      <th>Notification Title</th>
+      <th>Notification content</th>
+      <th>Members ID</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th><input type="text" placeholder="Search by ID" name="searchByID" id="searchByID" ng-model="searchByID" /></th>
+      <th><input type="text" placeholder="Search by Title" name="searchByTITLE" id="searchByTITLE" ng-model="searchByTITLE" /></th>
+      <th></th>
+      <th><input type="text" placeholder="Search by MEMBERS NAME" name="searchByMEMBER" id="searchByMEMBER" ng-model="searchByMEMBER" /></th>
+      <th></th>
+      <th></th>
+    </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      ng-repeat="notification in notifications | filter:{notification_id:searchByID,notification_title:searchByTITLE,f_name:searchByMEMBER}">
+      <!-- <td>{{$index}}</td> -->
+      <td></td>
+      <td>{{notification.notification_id}}</td>
+      <td>{{notification.notification_title}}</td>
+      <td>{{notification.notification_content}}</td>
+      <td>{{notification.f_name}} {{notification.l_name}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>

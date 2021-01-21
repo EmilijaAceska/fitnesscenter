@@ -1,0 +1,75 @@
+<main class="container">
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-light text-center">
+    <h1 class="display-4">PRODUCTS</h1>
+    <p class="lead">Here you can see our products and by clicking on the button "SPECIFICATIONS" to see what the product
+      offers.</p>
+    <div class="row justify-content-center mt-3">
+      <form>
+        <!--start inputs-->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-dark">Search products:</span>
+          </div>
+          <select class="form-control" name="searchByCATEGORY" id="searchByCATEGORY" ng-model="searchByCATEGORY">
+            <option value="{{product.product_id}}">All</option>
+            <option ng-repeat="categories in category" value="{{categories.category_title}}">
+              {{categories.category_title}}</option>
+          </select>
+        </div>
+      </form>
+      <!--end inputs-->
+    </div>
+  </div>
+
+  <div class="row  row-cols-md-3 mb-3 text-center">
+    <div class="col-sm-4" ng-repeat="product in products | filter:{category_title:searchByCATEGORY}">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+          <h4 class="my-0 fw-normal">{{product.product_title}}</h4>
+        </div>
+        <div class="card-body">
+          <img class="card-img-top mx-auto" src="uploads/{{product.category_img}}" alt="{{product.category_img}}" width="250px" height="250px">
+
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Personal Instructor</li>
+            <li>Schedule</li>
+            <li>Email support</li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-outline-secondary" ng-click="function_getId($index)"
+            data-toggle="modal" data-target="#myModal">SPECIFICATIONS</button>
+          <a href="#!/orders_details" class="btn btn-outline-secondary">BUY NOW</a>
+        </div>
+      </div>
+    </div>
+</main>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Specifications: {{products[getId].product_title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="mx-auto">
+            <img src="uploads/{{products[getId].category_img}}" alt="{{products[getId].category_img}}" width="200px" height="200px" />
+          </div>
+         </div> 
+        <div class="row">
+          <div class="mx-auto">
+            <p><strong>Description:</strong></p>
+            <p>{{products[getId].product_description}}</p>
+            <p><strong>Price - ></strong> {{products[getId].product_price}} MKD</p>
+            <p><strong>Instructor - > {{products[getId].first_name}} {{products[getId].last_name}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!/orders_details" class="btn btn-outline-secondary">BUY NOW</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+      </div>
+    </div>
+  </div>
+</div>

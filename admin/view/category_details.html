@@ -1,0 +1,37 @@
+<h3 class="text-center display-3 text-light">CATEGORIES</h3>
+<div class="alert alert-success" ng-show="successAlert">
+  You entered category title successfuly!
+</div>
+<div class="alert alert-success" ng-show="successfullAlert">
+  You updated this category successfuly!
+</div>
+<div class="alert alert-danger" ng-show="dangerAlert">
+  Please fill in the form correctly!
+</div>
+<div class="alert alert-info" ng-show="infoAlert">
+  The record already exists!
+</div>
+<form name="myForm" class="text-light">
+  <div class="form-group">
+    <label for="category_title">Category title:</label>
+    <div ng-show="myForm.category_title.$invalid"></div>
+    <span ng-show="checkUrl!==undefined">{{category[checkUrl].category_title}}</span>
+    <input ng-show="checkUrl===undefined" type="text" class="form-control" placeholder="insert category title" name="category_title" id="category_title" ng-model="category[checkUrl].category_title" ng-maxlength="50" required/>
+    <input type="hidden" class="form-control" name="category_title" id="category_title" ng-model="category[checkUrl].category_title"/>
+  </div>
+  <div class="form-group">
+    <label for="category_img">Upload image:</label>
+    <div ng-show="myForm.category_img.$invalid"></div>
+    <input type="text" class="form-control" placeholder="upload image" name="category_img" id="category_img" ng-model="category[checkUrl].category_img" required/>
+  </div>
+  <div class="form-group">
+    <button ng-show="checkUrl===undefined" class="btn btn-primary"
+      ng-click="(myForm.category_title.$valid && myForm.category_img.$valid) 
+      ? function_category_details(category[checkUrl].category_title,category[checkUrl].category_img, 'insert') : function_error()">SAVE</button>
+  </div>
+  <div class="form-group">
+    <button ng-show="checkUrl!==undefined" class="btn btn-primary"
+      ng-click="(myForm.category_title.$valid && myForm.category_img.$valid) 
+      ? function_category_details(category[checkUrl].category_title,category[checkUrl].category_img, 'update') : function_error()">EDIT</button>
+  </div>
+</form>

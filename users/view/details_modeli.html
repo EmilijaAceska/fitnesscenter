@@ -1,0 +1,45 @@
+<h3>Details Modeli</h3>
+<div class="alert alert-success" ng-show="successAlert">
+    Uspesno vnesovte model!
+</div>
+<div class="alert alert-danger" ng-show="dangerAlert">
+    Popolnete go pravilno formularot!
+</div>
+<form name="myForm">
+    <div class="form-group">
+        <label for="model_name">Ime:</label>
+        <div ng-show="myForm.model_name.$invalid" class="alert alert-danger">Vnesete ime na model so minimum 2 karakteri:</div>
+        <input type="text" class="form-control" placeholder="Ime na model" name="model_name" id="model_name" ng-model="modeli[checkUrl].model_name" ng-minlength="2">
+        <input type="hidden" class="form-control" name="model_id" id="model_id" ng-model="modeli[checkUrl].model_id" />
+      </div>
+    <div class="form-group">
+        <label for="color">Boja:</label>
+        <input type="text" class="form-control" placeholder="Boja" name="color" id="color" ng-model="modeli[checkUrl].color">
+    </div>
+    <div class="form-group">
+        <label for="price">Cena:</label>
+        <input type="text" class="form-control" placeholder="Cena" name="price" id="price" ng-model="modeli[checkUrl].price">
+    </div>
+    <div class="form-group">
+        <label for="km">Km:</label>
+        <input type="text" class="form-control" placeholder="Km" name="km" id="km" ng-model="modeli[checkUrl].km">
+    </div>
+    <div class="form-group">
+        <label for="marka_id">MarkaID:</label>
+        <select class="form-control" name="marka_id" id="marka_id" ng-model="modeli[checkUrl].marka_id">
+            <option ng-repeat="marka in marki" value="{{marka.marka_id}}">
+                {{marka.marka_name}} ({{marka.country}})</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="model_img">Prikaci slika</label>
+        <input type="text" class="form-group" placeholder="Prikaci slika" name="model_img" id="model_img" ng-model="modeli[checkUrl].model_img"/>
+    </div>
+    <div class="form-group">
+        <button ng-show="checkUrl===undefined" class="btn btn-primary"
+            ng-click="(myForm.model_name.$valid && myForm.color.$valid) ? function_details_modeli(modeli[checkUrl].model_name,modeli[checkUrl].color,modeli[checkUrl].price,modeli[checkUrl].km,modeli[checkUrl].marka_id,modeli[checkUrl].model_img, modeli[checkUrl].model_id, 'insert') : function_error()">SAVE</button>
+    </div>
+    <div ng-show="checkUrl!==undefined" class="form-group">
+        <button class="btn btn-primary" ng-click="(myForm.model_name.$valid && myForm.color.$valid) ? function_details_modeli(modeli[checkUrl].model_name,modeli[checkUrl].color,modeli[checkUrl].price,modeli[checkUrl].km,modeli[checkUrl].marka_id,modeli[checkUrl].model_img,modeli[checkUrl].model_id, 'update') : function_error()">EDIT</button>
+    </div>            
+</form>
