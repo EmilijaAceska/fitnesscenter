@@ -21,8 +21,6 @@ Password : admin
 
 Login Details for user : 
 
-Open Your browser put inside browser “http://localhost/fitnesscenter/users”
-
 Username : user
 
 Password : user
